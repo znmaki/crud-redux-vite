@@ -6,8 +6,8 @@ import {
 
 //CREAR NUEVOS PRODUCTOS
 //estas funciones se usan en el componente
-export function crearNuevoProdcutoAction() {
+export function crearNuevoProductoAction(producto) {
     return () => {
-        console.log('desde action');
+        console.log(producto);
     }
 }
