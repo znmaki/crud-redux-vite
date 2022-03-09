@@ -2,11 +2,15 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 //ACTION DE REDUX
 import { crearNuevoProductoAction } from '../actions/productoActions'
 
 const NuevoProducto = () => {
+  const MySwal = withReactContent(Swal)
+  MySwal.fire('aea')
   //USAR DISPATCH PARA CREAR LA FUNCION
   const dispatch = useDispatch();
 
@@ -19,6 +23,7 @@ const NuevoProducto = () => {
     precio: Yup.number()
       .required('El precio es obligatorio')
       .positive('Número no valido')
+      .typeError('Número no valido')
   })
 
   //FORMA DE MANDAR A LLAMAR EL ACTION
