@@ -1,6 +1,6 @@
 import './index.css'
 import Header from './components/Header'
-import Producto from './components/Producto'
+import Producto from './components/Productos'
 import NuevoProducto from './components/NuevoProducto'
 import EditarProducto from './components/EditarProducto'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'

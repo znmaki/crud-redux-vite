@@ -2,15 +2,12 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 
 //ACTION DE REDUX
 import { crearNuevoProductoAction } from '../actions/productoActions'
 
 const NuevoProducto = () => {
-  const MySwal = withReactContent(Swal)
-  MySwal.fire('aea')
+  
   //USAR DISPATCH PARA CREAR LA FUNCION
   const dispatch = useDispatch();
 
@@ -91,16 +88,6 @@ const NuevoProducto = () => {
                 >Agregar</button>
               </Form>
             </Formik>
-
-            <form
-            /* onSubmit={submitNuevoProducto} */
-            >
-
-
-
-
-
-            </form>
 
             {/* {cargando ? <p>Cargando...</p> : null}
 

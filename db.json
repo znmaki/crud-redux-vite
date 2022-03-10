@@ -1,14 +1,14 @@
 {
   "productos": [
     {
-      "id": 1,
       "nombre": "Jugo de Zanahoria",
-      "precio": "31111"
+      "precio": "31111",
+      "id": 1
     },
     {
-      "id": 2,
       "nombre": "Jugo de Naranja",
-      "precio": "1"
+      "precio": "1",
+      "id": 2
     },
     {
       "nombre": "Jugo de Naranja",
@@ -31,19 +31,9 @@
       "id": 6
     },
     {
-      "nombre": "Peras",
-      "precio": 30,
-      "id": 7
-    },
-    {
-      "nombre": "Papaya",
+      "nombre": "Arroz",
       "precio": 123,
-      "id": 8
-    },
-    {
-      "nombre": "Pan",
-      "precio": 30,
-      "id": 9
+      "id": 10
     }
   ]
 }
