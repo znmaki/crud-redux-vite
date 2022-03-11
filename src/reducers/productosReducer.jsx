@@ -7,15 +7,21 @@ import {
     DESCARGA_PRODUCTOS_ERROR,
     OBTENER_PRODUCTO_ELIMINAR,
     PRODUCTO_ELIMINADO_EXITO,
-    PRODUCTO_ELIMINADO_ERROR
+    PRODUCTO_ELIMINADO_ERROR,
+    OBTENER_PRODUCTO_EDITAR,
+    PRODUCTO_EDITAR_EXITO,
+    PRODUCTO_EDITAR_ERROR,
+    OBTENER_ID_EDITAR
 } from '../types'
 
 // cada reducer tiene su propio state
 const initialState = {
     productos: [],
+    productoEdit: [],
     error: null,
     loading: false,
-    idEliminar: null
+    idEliminar: null,
+    productoEditar: null
 }
 
 export default function (state = initialState, action) {
@@ -24,7 +30,8 @@ export default function (state = initialState, action) {
         case AGREGAR_PRODUCTO:
             return {
                 ...state,
-                loading: true
+                loading: true,                
+                productoEdit: null
             }
 
         case AGREGAR_PRODUCTO_EXITO:
@@ -33,6 +40,7 @@ export default function (state = initialState, action) {
                 loading: false,
                 productos: [...state.productos, action.payload]
             }
+        case PRODUCTO_EDITAR_ERROR:
         case PRODUCTO_ELIMINADO_ERROR:
         case DESCARGA_PRODUCTOS_ERROR:
         case AGREGAR_PRODUCTO_ERROR:
@@ -46,7 +54,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                productos: action.payload
+                productos: action.payload,
             }
 
         case OBTENER_PRODUCTO_ELIMINAR:
@@ -60,6 +68,28 @@ export default function (state = initialState, action) {
                 ...state,
                 productos: state.productos.filter(producto => producto.id !== state.idEliminar),
                 idEliminar: null
+            }
+
+        case OBTENER_PRODUCTO_EDITAR:
+            return {
+                ...state,
+                productoEditar: action.payload,
+            }
+
+        case PRODUCTO_EDITAR_EXITO:
+            return {
+                ...state,
+                productoeditar: null,
+                productos: state.productos.map(producto =>
+                    producto.id === action.payload.id ? producto = action.payload : producto
+                )
+            }
+
+        case OBTENER_ID_EDITAR:
+            return {
+                ...state,
+                loading: false,
+                productoEdit: action.payload
             }
 
         default:

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 //SWEETALERT2
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -11,6 +12,7 @@ import { borrarProductoAction } from '../actions/productoActions'
 const Producto = ({ producto }) => {
     const { nombre, precio, id } = producto;
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const confirmarEliminarProducto = id => {
         MySwal.fire({
@@ -43,6 +45,10 @@ const Producto = ({ producto }) => {
             }
         })
 
+    }
+
+    const redireccionarEdicion = (producto) => {
+        navigate(`/productos/editar/${producto.id}`)
     }
 
     return (
