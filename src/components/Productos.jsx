@@ -10,12 +10,13 @@ const Productos = () => {
 
   //OBTENER STATE
   const productos = useSelector(state => state.productos.productos);
-
+  const productoEdit = useSelector(state => state.productos.productoEdit);
+  
   //usar los datos del state
   useEffect(() => {
     const cargarProductos = () => dispatch(obtenerProductosAction());
     cargarProductos();
-  }, [])
+  }, [productoEdit])
 
 
   return (

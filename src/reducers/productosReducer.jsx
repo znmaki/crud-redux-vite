@@ -28,8 +28,7 @@ export default function (state = initialState, action) {
         case AGREGAR_PRODUCTO:
             return {
                 ...state,
-                loading: true,                
-                productoEdit: null
+                loading: true
             }
 
         case AGREGAR_PRODUCTO_EXITO:
@@ -52,7 +51,9 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loading: false,
+                error: null,
                 productos: action.payload,
+                productoEdit: null
             }
 
         case OBTENER_PRODUCTO_ELIMINAR:
