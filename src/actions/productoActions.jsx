@@ -9,9 +9,7 @@ import {
     OBTENER_PRODUCTO_ELIMINAR,
     PRODUCTO_ELIMINADO_EXITO,
     PRODUCTO_ELIMINADO_ERROR,
-    OBTENER_PRODUCTO_EDITAR,
     COMENZAR_EDICION_PRODUCTO,
-    PRODUCTO_EDITAR_EXITO,
     PRODUCTO_EDITAR_ERROR,
     OBTENER_ID_EDITAR
 } from '../types'
@@ -24,15 +22,14 @@ const MySwal = withReactContent(Swal)
 export function crearNuevoProductoAction(producto) {
     return async (dispatch) => {
         dispatch(agregarProducto())
-
         try {
             await clienteAxios.post('/productos', producto);
-            dispatch(agregarProductoExito(producto))
-            MySwal.fire(
+            await MySwal.fire(
                 'Correcto',
                 'El producto se agregó correctamente',
                 'success',
             )
+            dispatch(agregarProductoExito(producto))
 
         } catch (error) {
             dispatch(agregarProductoError(true))
@@ -110,50 +107,7 @@ const eliminarProductoError = () => ({
     payload: true
 })
 
-//SELECCIONAR Y EDITAR EL PRODUCTO
-/* export function editarProductoAction(producto) {
-    return async (dispatch) => {
-        dispatch(obtenerProductoEditar(producto));
-
-        try {
-            await clienteAxios.put(`/productos/${producto.id}`, producto);
-            dispatch(editarProductoExito())
-        } catch (error) {
-            dispatch(editarProductoError())
-        }
-    }
-}
-
-const obtenerProductoEditar = (producto) => ({
-    type: OBTENER_PRODUCTO_EDITAR,
-    payload: producto
-})
-
-const editarProductoExito = (producto) => ({
-    type: PRODUCTO_EDITAR_EXITO,
-    payload: producto
-})
-
-const editarProductoError = () => ({
-    type: PRODUCTO_EDITAR_ERROR,
-    payload: true
-}) */
-
-
-
-/* // Colocar producto en edición
-export function obtenerProductoEditar(producto) {
-    return (dispatch) => {
-        dispatch(obtenerProductoEditarAction(producto))
-    }
-}
-
-const obtenerProductoEditarAction = producto => ({
-    type: OBTENER_PRODUCTO_EDITAR,
-    payload: producto
-}) */
-
-/* ---------------------------------------- */
+//MOSTRAR EL PRODUCTO DENTRO DEL FORMULARIO (NO SE BORRA AUNQUE RECARGUES)
 export function obtenerIDEditar(id) {
     return async (dispatch) => {
         try {
@@ -169,16 +123,14 @@ const obtenerIDEditarAction = producto => ({
     type: OBTENER_ID_EDITAR,
     payload: producto
 })
-/* ---------------------------------------- */
 
-
+//EDITAR EL PRODUCTO MEDIANTE EL ID
 export function editarProductoAction(id, producto) {
     return async (dispatch) => {
         dispatch(editarProducto());
 
         try {
             await clienteAxios.put(`/productos/${id}`, producto);
-            dispatch(editarProductoExito(producto));
         } catch (error) {
             console.log(error);
             dispatch(editarProductoError());
@@ -187,11 +139,6 @@ export function editarProductoAction(id, producto) {
 }
 const editarProducto = () => ({
     type: COMENZAR_EDICION_PRODUCTO
-});
-
-const editarProductoExito = producto => ({
-    type: PRODUCTO_EDITAR_EXITO,
-    payload: producto
 });
 
 const editarProductoError = () => ({

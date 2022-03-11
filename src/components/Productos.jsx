@@ -8,14 +8,15 @@ import { useDispatch, useSelector } from 'react-redux'
 const Productos = () => {
   const dispatch = useDispatch();
 
+  //OBTENER STATE
+  const productos = useSelector(state => state.productos.productos);
+
   //usar los datos del state
   useEffect(() => {
     const cargarProductos = () => dispatch(obtenerProductosAction());
     cargarProductos();
   }, [])
 
-  //OBTENER STATE
-  const productos = useSelector(state => state.productos.productos);
 
   return (
     <>

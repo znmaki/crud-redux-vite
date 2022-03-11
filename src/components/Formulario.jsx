@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
+import { useNavigate } from 'react-router-dom'
 
 //REDUX
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 //ACTION DE REDUX
-import { crearNuevoProductoAction } from '../actions/productoActions'
-
+import { crearNuevoProductoAction, editarProductoAction } from '../actions/productoActions'
 
 const Formulario = ({ producto, tipo, id }) => {
     //USAR DISPATCH PARA CREAR LA FUNCION
     const dispatch = useDispatch();
+    //NAVIGATE PARA IR A OTRA SECCION
+    const navigate = useNavigate();
 
     const [productoEdit, setProductoEdit] = useState({
         nombre: '',
@@ -29,7 +31,9 @@ const Formulario = ({ producto, tipo, id }) => {
             agregarProducto(values);
         }
         else if (tipo === 'editar') {
-
+            /* console.log(values) */
+            dispatch(editarProductoAction(id, values));
+            navigate('/')
         }
     }
 
@@ -100,7 +104,7 @@ const Formulario = ({ producto, tipo, id }) => {
                                 <button
                                     type="submit"
                                     className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
-                                >Agregar</button>
+                                >{tipo}</button>
                             </Form>
                         </Formik>
                     </div>
